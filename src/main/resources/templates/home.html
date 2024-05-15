@@ -13,10 +13,10 @@
     <hr/>
     <div class="justify-content-center">
       <h2>Här följer en presentation av aktuella skidskyttar:</h2>
-      <h3><span th:text="${athlete?.GivenName} ?: 'Unknown'"></span> <span th:text="${athlete?.FamilyName} ?: 'Unknown'"></span></h3>
+      <h3 th:if="${root != null && root.FullName != null}" th:text="${root.FullName}"></h3>
+        <span th:unless="${root != null && root.FullName != null}">Namn saknas</span>
     </div>
   </div>
-</div>
 </div>
 </body>
 </html>

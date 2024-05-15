@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import perni.com.biathlon.models.XMLToObject;
+import perni.com.biathlon.models.ibubios.CISBiosResponse;
+import perni.com.biathlon.models.ibubios.CISBiosValue;
 import perni.com.biathlon.models.ibubios.Root;
 import reactor.core.publisher.Mono;
 
@@ -21,15 +23,16 @@ public class ApiProvider {
         this.xmlToObject = xmlToObject;
     }
 
-    public Mono<Root> getBio() {
+    public Mono<CISBiosResponse> getBio() {
         return webClient.get()
                 .uri("/CISBios?IBUId=BTSWE20211199501")
                 .accept(MediaType.APPLICATION_XML)
                 .retrieve()
                 .bodyToMono(String.class)
-                .doOnNext(xmlString -> logger.info("Mottagen XML-data: {}", xmlString))
+                .doOnNext(root -> {
+                    logger.info("Mottagen XML-data: {}", root);
+                })
                 .map(xmlToObject::convertXmlToObject);
 
     }
-
 }
