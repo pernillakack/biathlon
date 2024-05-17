@@ -5,6 +5,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.Date;
 public class CISBiosResponse {
+    @JacksonXmlProperty(localName = "Bibs")
+    private Bibs Bibs;
     @JacksonXmlProperty(localName = "IBUId")
     private String IBUId;
     @JacksonXmlProperty(localName = "FullName")
@@ -75,10 +77,12 @@ public class CISBiosResponse {
     private RNKS RNKS;
     @JacksonXmlProperty(localName = "Badges")
     private Badges Badges;
+
     @Override
     public String toString() {
         return "CISBiosResponse{" +
-                "IBUId='" + IBUId + '\'' +
+                "Bibs=" + Bibs +
+                ", IBUId='" + IBUId + '\'' +
                 ", FullName='" + FullName + '\'' +
                 ", FamilyName='" + FamilyName + '\'' +
                 ", GivenName='" + GivenName + '\'' +
@@ -115,6 +119,7 @@ public class CISBiosResponse {
                 ", Badges=" + Badges +
                 '}';
     }
+
     public String getIBUId() {
         return IBUId;
     }
@@ -395,43 +400,14 @@ public class CISBiosResponse {
         Badges = badges;
     }
 
+    public perni.com.biathlon.models.ibubios.Bibs getBibs() {
+        return Bibs;
+    }
+
+    public void setBibs(perni.com.biathlon.models.ibubios.Bibs bibs) {
+        Bibs = bibs;
+    }
+
     public CISBiosResponse(){}
 
-    public CISBiosResponse(String IBUId, String fullName, String familyName, String givenName, String NAT, String NF, Date birthdate, int birthYear, int age, String genderId, String functions, String photoURI, String flagURI, perni.com.biathlon.models.ibubios.Personal personal, perni.com.biathlon.models.ibubios.Sport sport, perni.com.biathlon.models.ibubios.Equipment equipment, perni.com.biathlon.models.ibubios.Stats stats, Object stories, perni.com.biathlon.models.ibubios.Recent recent, perni.com.biathlon.models.ibubios.OWG OWG, perni.com.biathlon.models.ibubios.WCH WCH, perni.com.biathlon.models.ibubios.JWCH JWCH, perni.com.biathlon.models.ibubios.WC WC, perni.com.biathlon.models.ibubios.IC IC, perni.com.biathlon.models.ibubios.JC JC, perni.com.biathlon.models.ibubios.Podiums podiums, perni.com.biathlon.models.ibubios.TopResults topResults, perni.com.biathlon.models.ibubios.StatSeasons statSeasons, perni.com.biathlon.models.ibubios.StatShooting statShooting, perni.com.biathlon.models.ibubios.StatShootingProne statShootingProne, perni.com.biathlon.models.ibubios.StatShootingStanding statShootingStanding, perni.com.biathlon.models.ibubios.StatSkiing statSkiing, perni.com.biathlon.models.ibubios.StatSkiKMB statSkiKMB, perni.com.biathlon.models.ibubios.RNKS RNKS, perni.com.biathlon.models.ibubios.Badges badges) {
-        this.IBUId = IBUId;
-        FullName = fullName;
-        FamilyName = familyName;
-        GivenName = givenName;
-        this.NAT = NAT;
-        this.NF = NF;
-        Birthdate = birthdate;
-        BirthYear = birthYear;
-        Age = age;
-        GenderId = genderId;
-        Functions = functions;
-        PhotoURI = photoURI;
-        FlagURI = flagURI;
-        Personal = personal;
-        Sport = sport;
-        Equipment = equipment;
-        Stats = stats;
-        Stories = stories;
-        Recent = recent;
-        this.OWG = OWG;
-        this.WCH = WCH;
-        this.JWCH = JWCH;
-        this.WC = WC;
-        this.IC = IC;
-        this.JC = JC;
-        Podiums = podiums;
-        TopResults = topResults;
-        StatSeasons = statSeasons;
-        StatShooting = statShooting;
-        StatShootingProne = statShootingProne;
-        StatShootingStanding = statShootingStanding;
-        StatSkiing = statSkiing;
-        StatSkiKMB = statSkiKMB;
-        this.RNKS = RNKS;
-        Badges = badges;
-    }
 }

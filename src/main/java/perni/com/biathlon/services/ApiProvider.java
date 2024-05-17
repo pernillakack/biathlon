@@ -23,9 +23,9 @@ public class ApiProvider {
         this.xmlToObject = xmlToObject;
     }
 
-    public Mono<CISBiosResponse> getBio() {
+    public Mono<CISBiosResponse> getBio(String IBUId) {
         return webClient.get()
-                .uri("/CISBios?IBUId=BTSWE20211199501")
+                .uri(uriBuilder -> uriBuilder.path("/CISBios").queryParam("IBUId", IBUId).build())
                 .accept(MediaType.APPLICATION_XML)
                 .retrieve()
                 .bodyToMono(String.class)

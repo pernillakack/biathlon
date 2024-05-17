@@ -9,18 +9,25 @@ import java.util.List;
 public class IC {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "CISBiosChampionshipsResult")
-    private List<CISBiosChampionshipsResult> CISBiosChampionshipsResult;
+    private CISBiosChampionshipsResult CISBiosChampionshipsResult;
+
+    @Override
+    public String toString() {
+        return "IC{" +
+                "CISBiosChampionshipsResult=" + CISBiosChampionshipsResult +
+                '}';
+    }
 
     public IC(){}
-    public IC(List<perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult> CISBiosChampionshipsResult) {
+    public IC(perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult CISBiosChampionshipsResult) {
         this.CISBiosChampionshipsResult = CISBiosChampionshipsResult;
     }
 
-    public List<perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult> getCISBiosChampionshipsResult() {
+    public perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult getCISBiosChampionshipsResult() {
         return CISBiosChampionshipsResult;
     }
 
-    public void setCISBiosChampionshipsResult(List<perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult> CISBiosChampionshipsResult) {
+    public void setCISBiosChampionshipsResult(perni.com.biathlon.models.ibubios.CISBiosChampionshipsResult CISBiosChampionshipsResult) {
         this.CISBiosChampionshipsResult = CISBiosChampionshipsResult;
     }
 }

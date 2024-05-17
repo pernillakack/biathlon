@@ -11,10 +11,23 @@
   <div class="container text-center">
     <h1>Svenska skidskyttar</h1>
     <hr/>
+    <div class="d-flex justify-content-end">
+      <p><a class="btn btn-outline-success" href="/login">Logga in</a></p>
+    </div>
     <div class="justify-content-center">
       <h2>Här följer en presentation av aktuella skidskyttar:</h2>
-      <h3 th:if="${root != null && root.FullName != null}" th:text="${root.FullName}"></h3>
-        <span th:unless="${root != null && root.FullName != null}">Namn saknas</span>
+      <h3>Klicka på namnen för att läsa mer: </h3>
+        <div class="form-group">
+          <div class="my-4">
+            <h4><a href="/athlete?IBUId=BTSWE20211199501">Hanna Öberg</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE22602199901">Elvira Öberg</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE22706199401">Linn Persson</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE23103199501">Anna Magnusson</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE12803199701">Sebastian Samuelsson</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE10809199501">Martin Ponsioluoma</a></h4>
+            <h4><a href="/athlete?IBUId=BTSWE10310199201">Jesper Nelin</a></h4>
+          </div>
+        </div>
     </div>
   </div>
 </div>

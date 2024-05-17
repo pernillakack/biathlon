@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="se" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Athlete</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<h1 th:if="${root != null && root.FullName != null}" th:text="${root.FullName}"></h1>
+<hr/>
+<div class="d-flex justify-content-end">
+  <p><a class="btn btn-outline-success" href="/login">Logga in</a>
+</div>
+<table class="table table-bordered table-striped">
+  <thead>
+  <th>Statistik per gren och säsong</th>
+    <th th:each="season : ${root.StatSeasons.string}">
+    <span th:text="${season}"></span>
+    </th>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Skytte</td>
+    <td th:each="shooting : ${root.StatShooting.string}" th:text="${shooting}"></td>
+  </tr>
+    <tr>
+    <td>Liggande</td>
+    <td th:each="shooting :${root.StatShootingProne.string}" th:text="${shooting}"></td>
+  </tr>
+  <tr>
+    <td>Stående</td>
+    <td th:each="shooting : ${root.StatShootingStanding.string}" th:text="${shooting}"></td>
+  </tr>
+  <tr>
+    <td>Skidåkning</td>
+    <td th:each="skiing : ${root.StatSkiing.string}" th:text="${skiing}"></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

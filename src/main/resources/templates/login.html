@@ -14,17 +14,20 @@
         <div class="justify-content-center">
             <form th:action="@{/login}" method="post" style="max-width: 200 px;">
                 <div class="container text-center col-2 my-4">
-                    <label for="email">Enter your email: </label>
+                    <label for="email">Ange din epostadress: </label>
                     <input name="email" type="text" id="email" placeholder="Your email..." required autofocus>
                 </div>
                 <div class="container text-center col-2 my-5">
-                    <label for="password">Enter your password: </label>
+                    <label for="password">Ange ditt lösenord: </label>
                     <input name="password" type="password" id="password" placeholder="Your password..." required>
                 </div>
                 <div class="container text-center col-2 my-5">
                     <button type="submit" class="btn btn-outline-success">Login</button>
                 </div>
             </form>
+            <div>
+                <p>Inte registrerad?</p>
+                <p><a class="btn btn-outline-danger" href="/register">Registrera dig</a>
         </div>
     </div>
 </div>

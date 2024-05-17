@@ -31,14 +31,19 @@ public class IbuController {
     }
 
 
-    @GetMapping("/")
-    public Mono<String> getAthlete( Model model ) {
-        return apiProvider.getBio()
+    @GetMapping("/athlete")
+    public Mono<String> getAthlete(@RequestParam String IBUId, Model model ) {
+        return apiProvider.getBio(IBUId)
                 .doOnNext(root ->{
                     logger.info("Converted xml-data: {}", root.toString());
                     model.addAttribute("root", root);
                 })
-                .thenReturn("home");
+                .thenReturn("athlete");
     }
+    @GetMapping("/")
+    public String getHome() {
+        return "home";
+    }
+
 }
 

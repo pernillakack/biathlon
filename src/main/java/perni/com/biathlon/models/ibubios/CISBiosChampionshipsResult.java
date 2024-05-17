@@ -11,15 +11,15 @@ public class CISBiosChampionshipsResult {
     @JacksonXmlProperty(localName = "Place")
     private String Place;
     @JacksonXmlProperty(localName = "Ind")
-    private int Ind;
+    private String Ind;
     @JacksonXmlProperty(localName = "Spr")
     private int Spr;
     @JacksonXmlProperty(localName = "Pur")
-    private int Pur;
+    private String Pur;
     @JacksonXmlProperty(localName = "Mas")
     private int Mas;
     @JacksonXmlProperty(localName = "Rel")
-    private int Rel;
+    private String Rel;
     @JacksonXmlProperty(localName = "MxRel")
     private int MxRel;
     @JacksonXmlProperty(localName = "Ind_Id")
@@ -47,29 +47,6 @@ public class CISBiosChampionshipsResult {
 
     public CISBiosChampionshipsResult() {}
 
-    public CISBiosChampionshipsResult(String year, int seasonId, String place, int ind, int spr, int pur, int mas, int rel, int mxRel, String ind_Id, String spr_Id, String pur_Id, String mas_Id, String rel_Id, String mxRel_Id, String sxRel, String sxRel_Id, String tot_Id, int tot, int tot_Score) {
-        Year = year;
-        SeasonId = seasonId;
-        Place = place;
-        Ind = ind;
-        Spr = spr;
-        Pur = pur;
-        Mas = mas;
-        Rel = rel;
-        MxRel = mxRel;
-        Ind_Id = ind_Id;
-        Spr_Id = spr_Id;
-        Pur_Id = pur_Id;
-        Mas_Id = mas_Id;
-        Rel_Id = rel_Id;
-        MxRel_Id = mxRel_Id;
-        SxRel = sxRel;
-        SxRel_Id = sxRel_Id;
-        Tot_Id = tot_Id;
-        Tot = tot;
-        Tot_Score = tot_Score;
-    }
-
     public String getYear() {
         return Year;
     }
@@ -94,11 +71,11 @@ public class CISBiosChampionshipsResult {
         Place = place;
     }
 
-    public int getInd() {
+    public String getInd() {
         return Ind;
     }
 
-    public void setInd(int ind) {
+    public void setInd(String ind) {
         Ind = ind;
     }
 
@@ -110,11 +87,11 @@ public class CISBiosChampionshipsResult {
         Spr = spr;
     }
 
-    public int getPur() {
+    public String getPur() {
         return Pur;
     }
 
-    public void setPur(int pur) {
+    public void setPur(String pur) {
         Pur = pur;
     }
 
@@ -126,11 +103,11 @@ public class CISBiosChampionshipsResult {
         Mas = mas;
     }
 
-    public int getRel() {
+    public String getRel() {
         return Rel;
     }
 
-    public void setRel(int rel) {
+    public void setRel(String rel) {
         Rel = rel;
     }
 

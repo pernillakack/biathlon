@@ -1,4 +1,4 @@
-package perni.com.biathlon.models;
+package perni.com.biathlon.models.deserializers;
 
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -10,19 +10,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringListDeserializer extends JsonDeserializer {
+public class StringListDeserializer extends JsonDeserializer<List<String>> {
     @Override
     public List<String> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JacksonException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
-        List<String> strings =new ArrayList<>();
+        List<String> string = new ArrayList<>();
         if(node.isArray()) {
-            for(final JsonNode objNode : node) {
-                strings.add(objNode.asText());
+            for(JsonNode element : node) {
+                string.add(element.asText());
             }
         }else{
-            strings.add(node.asText());
+            string.add(node.asText());
         }
 
-        return strings;
+        return string;
     }
 }
