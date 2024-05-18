@@ -1,6 +1,7 @@
 package perni.com.biathlon.models.ibubios;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import perni.com.biathlon.models.deserializers.StringListDeserializer;
@@ -8,8 +9,8 @@ import perni.com.biathlon.models.deserializers.StringListDeserializer;
 import java.util.List;
 @JacksonXmlRootElement(localName = "StatShootingStanding")
 public class StatShootingStanding {
+    @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "string")
-    @JsonDeserialize(using = StringListDeserializer.class)
     private List<String> string;
 
     @Override
