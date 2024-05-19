@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="se" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Athlete</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Athlete</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container flex">
@@ -12,44 +12,194 @@
     <p><a class="btn btn-outline-success" href="/login">Logga in</a>
   </div>
   <div th:if="${root.PhotoURI != null}">
-    <img th:src="${root.PhotoURI}" alt="Athlete photo" class="img-fluid w-25">
+    <img th:src="${root.PhotoURI}" alt="Foto saknas" class="img-fluid w-25">
     <h1 th:if="${root != null && root.FullName != null}" th:text="${root.FullName}"></h1>
   </div>
-<hr/>
-<table class="table table-bordered table-striped">
+  <hr/>
+
   <div th:if="${root != null}">
     <p th:each="CISBiosValue : ${root.Sport.CISBiosValue}"
        th:if="${CISBiosValue.Description} == 'Biath.since'"
        th:text="${root.GivenName} + ' började med skidskytte ' + ${CISBiosValue.Value} + '.'"></p>
-  <p th:each="CISBiosValue : ${root.Sport.CISBiosValue}"
-     th:if="${CISBiosValue.Description} == 'WC debut'"
-     th:text="'Hen är idag ' + ${root.Age} + ' år och debuterade i världscupen ' + ${CISBiosValue.Value} + '.'"></p>
+    <p th:each="CISBiosValue : ${root.Sport.CISBiosValue}"
+       th:if="${CISBiosValue.Description} == 'WC debut'"
+       th:text="'Hen är idag ' + ${root.Age} + ' år och debuterade i världscupen ' + ${CISBiosValue.Value} + '.'"></p>
   </div>
-  <thead>
-  <th>Statistik per gren och säsong</th>
+  <table class="table table-bordered table-striped">
+    <thead class="bg-success text-white">
+    <th>Statistik per gren och säsong</th>
     <th th:each="season : ${root.StatSeasons.string}">
-    <span th:text="${season}"></span>
+      <span th:text="${season}"></span>
     </th>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Skytte</td>
-    <td th:each="shooting : ${root.StatShooting.string}" th:text="${shooting}"></td>
-  </tr>
+    </thead>
+    <tbody>
     <tr>
-    <td>Liggande</td>
-    <td th:each="shooting :${root.StatShootingProne.string}" th:text="${shooting}"></td>
-  </tr>
-  <tr>
-    <td>Stående</td>
-    <td th:each="shooting : ${root.StatShootingStanding.string}" th:text="${shooting}"></td>
-  </tr>
-  <tr>
-    <td>Skidåkning</td>
-    <td th:each="skiing : ${root.StatSkiing.string}" th:text="${skiing}"></td>
-  </tr>
-  </tbody>
-</table>
+      <td>Skytte</td>
+      <td th:each="shooting : ${root.StatShooting.string}" th:text="${shooting}"></td>
+    </tr>
+    <tr>
+      <td>Liggande</td>
+      <td th:each="shooting :${root.StatShootingProne.string}" th:text="${shooting}"></td>
+    </tr>
+    <tr>
+      <td>Stående</td>
+      <td th:each="shooting : ${root.StatShootingStanding.string}" th:text="${shooting}"></td>
+    </tr>
+    <tr>
+      <td>Skidåkning</td>
+      <td th:each="skiing : ${root.StatSkiing.string}" th:text="${skiing}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div>Resultat i senaste tävlingarna:</div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th>Nivå</th>
+      <th>Tävling</th>
+      <th>Säsong</th>
+      <th>Rank</th>
+      <th>Typ</th>
+      <th>Skjutning</th>
+      <th>Straff</th>
+      <th>Plats</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="result : ${root.Recent.CISBiosResult}">
+      <td>
+      <span th:switch="${result.Level}">
+        <span th:case="'WC'">Världscupen</span>
+        <span th:case="'IBU C.'">IBU-cupen</span>
+        <span th:case="'ECH'">EM</span>
+        <span th:case="'WCH'">VM</span>
+        <span th:case="'OWG'">OS</span>
+        <span th:case="'JWCH">Junior-VM</span>
+        <span th:case="*">Okänd</span>
+      </span>
+      </td>
+      <td th:text="${result.Competition}"></td>
+      <td th:text="${result.Season}"></td>
+      <td th:text="${result.Rank}"></td>
+      <td>
+        <span th:switch="${result.Comp}">
+          <span th:case="'MS'">Masstart</span>
+          <span th:case="'PU'">Jaktstart</span>
+          <span th:case="'SP'">Sprint</span>
+          <span th:case="'RL'">Stafett</span>
+          <span th:case="'IN'">Individuell start</span>
+          <span th:case="'SI'">Kort individuellt</span>
+          <span th:case="'SR'">Singel-mixed stafett</span>
+          <span th:case="'MR'">Mixed stafett</span>
+          <span th:case="'M6'">Masstart</span>
+          <span th:case="*">Okänd</span>
+        </span>
+      </td>
+      <td th:text="${result.Shootings}"></td>
+      <td th:text="${result.Pen}"></td>
+      <td th:text="${result.Place} + ', ' + ${result.PlaceNat}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th>Resultat i världsupen:</th>
+      <th th:each="result : ${root.WC.CISBiosChampionshipsResult}">
+        <span th:text="${result.Year}"></span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Individuell start</td>
+      <td th:each="result : ${root.WC.CISBiosChampionshipsResult}" th:text="${result.Ind}"></td>
+    </tr>
+    <tr>
+      <td>Sprint</td>
+      <td th:each="result : ${root.WC.CISBiosChampionshipsResult}" th:text="${result.Spr}"></td>
+    </tr>
+    <tr>
+      <td>Jaktstart</td>
+      <td th:each="result : ${root.WC.CISBiosChampionshipsResult}" th:text="${result.Pur}"></td>
+    </tr>
+    <tr>
+      <td>Masstart</td>
+      <td th:each="result : ${root.WC.CISBiosChampionshipsResult}" th:text="${result.Mas}"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th>Resultat i världsmästerskap:</th>
+      <th th:each="result : ${root.WCH.CISBiosChampionshipsResult}">
+        <span th:text="${result.Year}"></span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Individuell start</td>
+      <td th:each="result : ${root.WCH.CISBiosChampionshipsResult}" th:text="${result.Ind}"></td>
+    </tr>
+    <tr>
+      <td>Sprint</td>
+      <td th:each="result : ${root.WCH.CISBiosChampionshipsResult}" th:text="${result.Spr}"></td>
+    </tr>
+    <tr>
+      <td>Jaktstart</td>
+      <td th:each="result : ${root.WCH.CISBiosChampionshipsResult}" th:text="${result.Pur}"></td>
+    </tr>
+    <tr>
+      <td>Masstart</td>
+      <td th:each="result : ${root.WCH.CISBiosChampionshipsResult}" th:text="${result.Mas}"></td>
+    </tr>
+    <tr>
+      <td>Stafett</td>
+      <td th:each="result : ${root.WCH.CISBiosChampionshipsResult}" th:text="${result.Rel}"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <table class="table table-bordered table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th>Resultat i OS:</th>
+      <th th:each="result : ${root.OWG.CISBiosChampionshipsResult}">
+        <span th:text="${result.Year}"></span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Individuell start</td>
+      <td th:each="result : ${root.OWG.CISBiosChampionshipsResult}" th:text="${result.Ind}"></td>
+    </tr>
+    <tr>
+      <td>Sprint</td>
+      <td th:each="result : ${root.OWG.CISBiosChampionshipsResult}" th:text="${result.Spr}"></td>
+    </tr>
+    <tr>
+      <td>Jaktstart</td>
+      <td th:each="result : ${root.OWG.CISBiosChampionshipsResult}" th:text="${result.Pur}"></td>
+    </tr>
+    <tr>
+      <td>Masstart</td>
+      <td th:each="result : ${root.OWG.CISBiosChampionshipsResult}" th:text="${result.Mas}"></td>
+    </tr>
+    <tr>
+      <td>Stafett</td>
+      <td th:each="result : ${root.OWG.CISBiosChampionshipsResult}" th:text="${result.Rel}"></td>
+    </tr>
+
+    </tbody>
+  </table>
 </div>
 </body>
 </html>

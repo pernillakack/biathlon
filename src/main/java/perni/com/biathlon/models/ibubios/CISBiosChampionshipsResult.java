@@ -3,6 +3,7 @@ package perni.com.biathlon.models.ibubios;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+@JacksonXmlRootElement(localName = "CISBiosChampionshipsResult")
 public class CISBiosChampionshipsResult {
     @JacksonXmlProperty(localName = "Year")
     private String Year;
@@ -13,7 +14,7 @@ public class CISBiosChampionshipsResult {
     @JacksonXmlProperty(localName = "Ind")
     private String Ind;
     @JacksonXmlProperty(localName = "Spr")
-    private int Spr;
+    private String Spr;
     @JacksonXmlProperty(localName = "Pur")
     private String Pur;
     @JacksonXmlProperty(localName = "Mas")
@@ -79,11 +80,11 @@ public class CISBiosChampionshipsResult {
         Ind = ind;
     }
 
-    public int getSpr() {
+    public String getSpr() {
         return Spr;
     }
 
-    public void setSpr(int spr) {
+    public void setSpr(String spr) {
         Spr = spr;
     }
 

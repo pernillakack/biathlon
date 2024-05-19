@@ -20,7 +20,7 @@ public class CISBiosResult {
     @JacksonXmlProperty(localName = "PlaceNat")
     private String PlaceNat;
     @JacksonXmlProperty(localName = "Rank")
-    private int Rank;
+    private String Rank;
     @JacksonXmlProperty(localName = "SO")
     private int SO;
     @JacksonXmlProperty(localName = "Pen")
@@ -32,7 +32,7 @@ public class CISBiosResult {
     public CISBiosResult(String raceId){
         RaceId = raceId;
     }
-    public CISBiosResult(String raceId, String seasonId, String season, String comp, String competition, String level, String place, String placeNat, int rank, int SO, int pen, String shootings) {
+    public CISBiosResult(String raceId, String seasonId, String season, String comp, String competition, String level, String place, String placeNat, String rank, int SO, int pen, String shootings) {
         RaceId = raceId;
         SeasonId = seasonId;
         Season = season;
@@ -114,11 +114,11 @@ public class CISBiosResult {
         PlaceNat = placeNat;
     }
 
-    public int getRank() {
+    public String getRank() {
         return Rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(String rank) {
         Rank = rank;
     }
 
