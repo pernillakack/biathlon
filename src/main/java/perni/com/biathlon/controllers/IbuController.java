@@ -27,7 +27,7 @@ public class IbuController {
         List<String> ibuIds = Arrays.asList(
                 "BTSWE22602199901", "BTSWE22706199401", "BTSWE23103199501", "BTSWE12803199701", "BTSWE10809199501",
                 "BTSWE22207200001", "BTSWE22210199901", "BTSWE21301200301", "BTSWE12701200101", "BTSWE12503199701",
-                "BTSWE10404200001", "BTSWE10807199901", "BTSWE20211199501");
+                "BTSWE10404200001", "BTSWE10807199901", "BTSWE20211199501", "BTSWE10310199201");
 
         List<Mono<CISBiosResponse>> results = ibuIds.stream()
                 .map(apiProvider::getBio)
