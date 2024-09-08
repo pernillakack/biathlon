@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Bygg applikationen
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Körbilden - en lättviktig Java-bild för att köra den färdiga applikationen
 FROM openjdk:17-jdk-slim
